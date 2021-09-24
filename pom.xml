@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.ywh</groupId>
+    <artifactId>base-code</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <!--引入模块-->
+    <modules>
+        <module>base-code-common</module>
+        <module>base-code-controller</module>
+        <module>base-code-service</module>
+        <module>base-code-job</module>
+    </modules>
+
+
+    <!--版本控制-->
+    <properties>
+        <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
+        <snakeyaml.version>1.29</snakeyaml.version>
+        <spring-boot-starter.version>2.1.4.RELEASE</spring-boot-starter.version>
+        <spring-boot-starter-web.version>2.1.4.RELEASE</spring-boot-starter-web.version>
+    </properties>
+
+
+
+    <!--版本控制-->
+    <dependencyManagement>
+        <dependencies>
+            <!--spring-boot-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--读取配置文件-->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+            <!--引用start-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring-boot-starter.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot-starter-web.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--<parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+    </parent>-->
+
+    <!--<dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        &lt;!&ndash;<dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>&ndash;&gt;
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.1</version>
+        </dependency>
+    </dependencies>-->
+
+
+   <build>
+       <pluginManagement>
+           <plugins>
+               <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>build-helper-maven-plugin</artifactId>
+                   <version>3.1.0</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>exec-maven-plugin</artifactId>
+                   <version>1.6.0</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>flatten-maven-plugin</artifactId>
+                   <version>1.2.5</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>versions-maven-plugin</artifactId>
+                   <version>2.7</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.codehaus.mojo</groupId>
+                   <artifactId>xml-maven-plugin</artifactId>
+                   <version>1.0.2</version>
+               </plugin>
+
+
+               <plugin>
+                   <groupId>org.flywaydb</groupId>
+                   <artifactId>flyway-maven-plugin</artifactId>
+                   <version>6.4.4</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>pl.project13.maven</groupId>
+                   <artifactId>git-commit-id-plugin</artifactId>
+                   <version>3.0.1</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.johnzon</groupId>
+                   <artifactId>johnzon-maven-plugin</artifactId>
+                   <version>1.2.8</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.jooq</groupId>
+                   <artifactId>jooq-codegen-maven</artifactId>
+                   <version>3.13.4</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.jetbrains.kotlin</groupId>
+                   <artifactId>kotlin-maven-plugin</artifactId>
+                   <version>1.3.72</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-antrun-plugin</artifactId>
+                   <version>1.8</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-assembly-plugin</artifactId>
+                   <version>3.3.0</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-compiler-plugin</artifactId>
+                   <version>3.8.1</version>
+                   <configuration>
+                       <source>1.8</source>
+                       <target>1.8</target>
+                   </configuration>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-dependency-plugin</artifactId>
+                   <version>3.1.2</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-deploy-plugin</artifactId>
+                   <version>3.0.0-M1</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-enforcer-plugin</artifactId>
+                   <version>3.0.0-M3</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-failsafe-plugin</artifactId>
+                   <version>2.22.2</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-help-plugin</artifactId>
+                   <version>3.2.0</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-install-plugin</artifactId>
+                   <version>2.5.2</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-invoker-plugin</artifactId>
+                   <version>3.2.1</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-jar-plugin</artifactId>
+                   <version>3.1.0</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-javadoc-plugin</artifactId>
+                   <version>3.2.0</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-resources-plugin</artifactId>
+                   <version>3.1.0</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-shade-plugin</artifactId>
+                   <version>3.2.4</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-source-plugin</artifactId>
+                   <version>3.2.1</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-surefire-plugin</artifactId>
+                   <version>2.22.2</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.apache.maven.plugins</groupId>
+                   <artifactId>maven-war-plugin</artifactId>
+                   <version>3.2.3</version>
+               </plugin>
+
+               <plugin>
+                   <groupId>org.springframework.boot</groupId>
+                   <artifactId>spring-boot-maven-plugin</artifactId>
+                   <version>2.3.2.RELEASE</version>
+               </plugin>
+           </plugins>
+       </pluginManagement>
+
+    </build>
+</project>
