@@ -20,14 +20,22 @@
 
     <!--版本控制-->
     <properties>
+        <!--引入springboot-->
         <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
-        <snakeyaml.version>1.29</snakeyaml.version>
         <spring-boot-starter.version>2.1.4.RELEASE</spring-boot-starter.version>
         <spring-boot-starter-web.version>2.1.4.RELEASE</spring-boot-starter-web.version>
+        <!--tk.mybatis相关-->
         <mybatis-starter.version>1.3.2</mybatis-starter.version>
-        <mybatis.generator.version>1.3.7</mybatis.generator.version>
+        <durid.version>1.1.10</durid.version>
         <tk.mybatis.version>2.1.4</tk.mybatis.version>
+
+
+        <snakeyaml.version>1.29</snakeyaml.version>
+
+        <mybatis.generator.version>1.3.7</mybatis.generator.version>
+
         <pagehelper.version>1.2.9</pagehelper.version>
+
     </properties>
 
 
@@ -42,12 +50,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--读取配置文件-->
-            <dependency>
-                <groupId>org.yaml</groupId>
-                <artifactId>snakeyaml</artifactId>
-                <version>${snakeyaml.version}</version>
-            </dependency>
+
             <!--引用start-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -61,16 +64,11 @@
                 <version>${spring-boot-starter-web.version}</version>
             </dependency>
 
+            <!--引入mybatis-->
             <dependency>
                 <groupId>org.mybatis.spring.boot</groupId>
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-starter.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-core</artifactId>
-                <version>${mybatis.generator.version}</version>
             </dependency>
 
             <dependency>
@@ -79,12 +77,76 @@
                 <version>${tk.mybatis.version}</version>
             </dependency>
 
+            <!--数据源-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${durid.version}</version>
+            </dependency>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!--添加lombok支持，可以省掉写get和set方法-->
+          <!--  <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.10</version>
+                <optional>true</optional>
+            </dependency>-->
+            <!--使用fastjson来操作json数据-->
+            <!--<dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.31</version>
+            </dependency>-->
+
+
+
+
+
+
+
+
+
+
+            <!--读取配置文件-->
+            <dependency>
+                <groupId>org.yaml</groupId>
+                <artifactId>snakeyaml</artifactId>
+                <version>${snakeyaml.version}</version>
+            </dependency>
+
+
+
+            <dependency>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-core</artifactId>
+                <version>${mybatis.generator.version}</version>
+            </dependency>
+
+
+
             <!--分页插件-->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper.version}</version>
             </dependency>
+
+
         </dependencies>
     </dependencyManagement>
 

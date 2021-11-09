@@ -20,12 +20,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
 
         <dependency>
@@ -33,47 +27,46 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--引入mybatis-->
+        <!--mybatis操作数据库有关-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
         </dependency>
-        <!--引入Spring封装的jdbc-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-
+        <!--连接mysql-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-
+        <!--使用阿里巴巴的druid数据源-->
         <dependency>
-            <groupId>org.mybatis.generator</groupId>
-            <artifactId>mybatis-generator-core</artifactId>
-        </dependency>
-
-        <!--引入数据源-->
-       <!-- <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid-spring-boot-starter</artifactId>
-            <version>1.1.2</version>
-        </dependency>-->
-
+        </dependency>
         <!--通用mapper-->
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper-spring-boot-starter</artifactId>
         </dependency>
 
-        <!--分页插件-->
+
+
+
+        <!--lombok-->
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+
+
+
+
+        <!--分页插件-->
+       <!-- <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
-            <version>1.2.9</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
 
