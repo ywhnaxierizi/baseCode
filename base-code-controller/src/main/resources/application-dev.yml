@@ -9,3 +9,6 @@ datasource:
   password: root
   autoCommit: true
 
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.ywh.base.common.dao
