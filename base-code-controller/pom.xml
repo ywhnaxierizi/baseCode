@@ -21,10 +21,6 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
-
-
-
-
         <!--test包-->
         <dependency>
             <groupId>junit</groupId>
@@ -41,7 +37,6 @@
             <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
-
 
     </dependencies>
 </project>
