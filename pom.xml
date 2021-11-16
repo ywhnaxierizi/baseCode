@@ -32,8 +32,12 @@
         <lombok.version>1.18.6</lombok.version>
         <!--common-lang3-->
         <common.lang3.version>3.8</common.lang3.version>
+        <!--security-->
+        <security-oauth2.version>2.3.5.RELEASE</security-oauth2.version>
+        <jjwt.version>0.9.1</jjwt.version>
 
 
+        <fastjson.version>1.2.31</fastjson.version>
         <snakeyaml.version>1.29</snakeyaml.version>
 
         <mybatis.generator.version>1.3.7</mybatis.generator.version>
@@ -104,25 +108,29 @@
             </dependency>
 
 
-
-
-
-
-
-
+            <!--security-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${security-oauth2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${security-oauth2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
 
             <!--使用fastjson来操作json数据-->
-            <!--<dependency>
+            <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
-                <version>1.2.31</version>
-            </dependency>-->
-
-
-
-
-
-
+                <version>${fastjson.version}</version>
+            </dependency>
 
 
 
