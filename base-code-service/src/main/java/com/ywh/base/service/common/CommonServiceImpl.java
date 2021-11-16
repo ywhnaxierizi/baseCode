@@ -1,5 +1,6 @@
 package com.ywh.base.service.common;
 
+import com.ywh.base.common.domain.User;
 import com.ywh.base.service.impl.common.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;

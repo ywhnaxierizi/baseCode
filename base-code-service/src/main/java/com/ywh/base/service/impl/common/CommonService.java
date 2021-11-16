@@ -1,5 +1,7 @@
 package com.ywh.base.service.impl.common;
 
+import com.ywh.base.common.domain.User;
+
 import java.util.List;
 
 public interface CommonService<T> {
