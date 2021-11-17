@@ -32,6 +32,7 @@
         <lombok.version>1.18.6</lombok.version>
         <!--common-lang3-->
         <common.lang3.version>3.8</common.lang3.version>
+
         <!--security-->
         <security-oauth2.version>2.3.5.RELEASE</security-oauth2.version>
         <jjwt.version>0.9.1</jjwt.version>
@@ -106,7 +107,6 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${common.lang3.version}</version>
             </dependency>
-
 
             <!--security-->
             <dependency>

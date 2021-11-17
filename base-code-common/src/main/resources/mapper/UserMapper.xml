@@ -16,6 +16,17 @@
         <result column="update_date" property="updateDate" jdbcType="TIMESTAMP"/>
         <result column="update_by" property="updateBy" jdbcType="VARCHAR"/>
     </resultMap>
+    <sql id="base_columns">
+        id, user_name, nick_name, email, mobile_phone, passwd, use_state, del_state, remark, create_date, create_by, update_date, update_by
+    </sql>
+
+    <select id="findByUserName" resultMap="BaseResultMap">
+        select <include refid="base_columns"/>
+        from user
+        where user_name = #{userName,jdbcType="VARCHAR"}
+        and del_state = '1' and use_state = '1'
+    </select>
+
     <select id="count" resultType="java.lang.Integer">
         select count(1) from user
     </select>

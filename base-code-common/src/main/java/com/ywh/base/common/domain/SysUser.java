@@ -20,6 +20,9 @@ public class SysUser implements UserDetails {
     /**用户的权限列表*/
     private Collection<? extends GrantedAuthority> authorities;
 
+    /**验证码*/
+    private String verifyCode;
+
     /**
      * 构造器
      * @return

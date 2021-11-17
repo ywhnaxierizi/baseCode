@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/auth/logout") //登出的url
-                .deleteCookies("cookieName")  //登出时删除的cookie名
+                .deleteCookies("verifycode")  //登出时删除的cookie名
                 .permitAll()
                 .and()
                 .httpBasic()
