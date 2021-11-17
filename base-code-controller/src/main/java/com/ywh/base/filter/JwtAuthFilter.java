@@ -4,13 +4,14 @@ import com.alibaba.fastjson.JSONObject;
 import com.ywh.base.common.Exception.AuthException;
 import com.ywh.base.common.Exception.VerifyCodeFailesException;
 import com.ywh.base.common.constants.CommonConstants;
-import com.ywh.base.common.domain.SysUser;
-import com.ywh.base.common.utils.AesUtils;
-import com.ywh.base.common.utils.CookieUtils;
-import com.ywh.base.common.utils.ResponseUtils;
+import com.ywh.base.common.enums.StatusCodeEnum;
+import com.ywh.base.common.model.SysUser;
+import com.ywh.base.common.model.UserInfo;
+import com.ywh.base.common.utils.*;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.scheduling.support.TaskUtils;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -20,10 +21,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.*;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author ywh
@@ -94,8 +98,25 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
         log.info("用户登录认证成功");
         SysUser sysUser = (SysUser) authResult.getPrincipal();
         //用户认证成功后要生成token
-        //TODO 将相关返回信息参数写到response中
-        ResponseUtils.write(response, 200, "", null, null);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(sysUser.getUserId());
+        userInfo.setUserName(sysUser.getUsername());
+        userInfo.setNickName(sysUser.getNickName());
+        /**因为RsaUtils要从配置中读取参数，所以方法不能写成静态的，本类没有被spring容器管理，所以这里
+         * 无法加载RsaUtils,只能通过spring上下文容器来获取
+         */
+        RsaUtils rsaUtils = SpringContextBeanUtils.getBean(RsaUtils.class);
+        String token = JwtUtils.createToken(rsaUtils.getPrivateKey(), userInfo, 8*60);
+        // TODO 可以将token写到reids
+
+        //将token写到cookie中
+        Map<String, Object> data = new HashMap<>();
+        data.put("userInfo", userInfo);
+        data.put("token", token);
+        Cookie cookie = new Cookie("token", token);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+        ResponseUtils.write(response, HttpServletResponse.SC_OK, StatusCodeEnum.CODE_200.getCode(), "用户认证成功", data);
     }
 
     /**
@@ -125,9 +146,7 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
         }  else if (failed instanceof DisabledException) {
             log.error("账号被锁");
         }
-
-        //TODO 将相关返回信息参数写到response中
-        ResponseUtils.write(response,400);
+        ResponseUtils.write(response,HttpServletResponse.SC_BAD_REQUEST);
     }
 
 }

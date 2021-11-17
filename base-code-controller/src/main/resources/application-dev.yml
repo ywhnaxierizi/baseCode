@@ -13,4 +13,7 @@ mybatis:
   mapper-locations: classpath:/mapper/**/*.xml
   type-aliases-package: com.ywh.base.common.dao
 
-#RSA非对称
+#RSA非对称秘匙存放文件url
+rsa:
+  publicKeyFile: D:\\mycode\\keyfile\\public_key
+  privateKeyFile: D:\\mycode\\keyfile\\private_key

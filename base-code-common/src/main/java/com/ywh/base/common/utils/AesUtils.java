@@ -19,7 +19,9 @@ import java.security.NoSuchAlgorithmException;
 @Slf4j
 public class AesUtils {
 
-    private static String KEY = "";
+    /**32位*/
+    private static String KEY = "qwdsazxcerfdriokgrewosihugnbvpoi";
+    /**16的倍数*/
     private static String IV = "";
 
 

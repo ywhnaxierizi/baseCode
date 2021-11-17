@@ -1,4 +1,4 @@
-package com.ywh.base.common.domain;
+package com.ywh.base.common.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,6 +22,8 @@ public class SysUser implements UserDetails {
 
     /**验证码*/
     private String verifyCode;
+    private Integer userId;
+    private String nickName;
 
     /**
      * 构造器

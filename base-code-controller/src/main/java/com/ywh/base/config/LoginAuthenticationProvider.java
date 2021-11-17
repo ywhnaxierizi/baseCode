@@ -1,13 +1,14 @@
 package com.ywh.base.config;
 
-import com.ywh.base.common.Exception.AuthException;
-import com.ywh.base.common.domain.SysUser;
+import com.ywh.base.common.model.SysUser;
 import com.ywh.base.common.utils.Md5Utils;
 import com.ywh.base.service.impl.auth.SecurityServiceImpl;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.*;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;

@@ -23,7 +23,7 @@
     <select id="findByUserName" resultMap="BaseResultMap">
         select <include refid="base_columns"/>
         from user
-        where user_name = #{userName,jdbcType="VARCHAR"}
+        where user_name = #{userName,jdbcType=VARCHAR}
         and del_state = '1' and use_state = '1'
     </select>
 

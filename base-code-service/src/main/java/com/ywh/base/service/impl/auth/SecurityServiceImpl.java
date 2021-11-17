@@ -1,7 +1,7 @@
 package com.ywh.base.service.impl.auth;
 
-import com.ywh.base.common.domain.SysUser;
 import com.ywh.base.common.domain.User;
+import com.ywh.base.common.model.SysUser;
 import com.ywh.base.service.auth.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +39,8 @@ public class SecurityServiceImpl implements UserDetailsService {
         List<String> roles = new ArrayList<>();
         roles.stream().forEach(s -> list.add(new SimpleGrantedAuthority(s)));
         SysUser sysUser = new SysUser(user.getUserName(), user.getPasswd(), list);
+        sysUser.setUserId(user.getId());
+        sysUser.setNickName(user.getNickName());
         return sysUser;
     }
 }
