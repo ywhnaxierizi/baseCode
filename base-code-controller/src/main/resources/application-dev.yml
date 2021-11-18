@@ -17,3 +17,15 @@ mybatis:
 rsa:
   publicKeyFile: D:\\mycode\\keyfile\\public_key
   privateKeyFile: D:\\mycode\\keyfile\\private_key
+
+redis:
+  host: 127.0.0.1
+  port: 6379
+  timeout: 30000
+  database: 0
+  maxTotal: 8
+  maxIdle: 8
+  maxWaitMillis: -1
+  minEvictableIdleTimeMillis: 30000
+  blockWhenExhausted: false
+
