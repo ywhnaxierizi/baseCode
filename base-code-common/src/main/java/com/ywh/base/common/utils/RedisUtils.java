@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 
@@ -55,6 +57,37 @@ public class RedisUtils {
         return redisTemplate.opsForValue().get(key);
     }
 
+
+    /**
+     * 获取指定的对象的集合
+     * @param key
+     * @param tClass
+     * @param <T>
+     * @return
+     */
+    public <T> List<T> getValueForList(String key, Class<T> tClass) {
+        Object value = getValue(key);
+        if (tClass == Collection.class) {
+            return JSONObject.parseArray(value.toString(), tClass);
+        }
+        return null;
+    }
+
+    /**
+     * 获取指定的对象
+     * @param key
+     * @param tClass
+     * @param <T>
+     * @return
+     */
+    public <T> T getValue(String key, Class<T> tClass) {
+        Object value = getValue(key);
+        return JSONObject.parseObject(value.toString(), tClass);
+    }
+
+    public void deleteKey(String key) {
+        redisTemplate.delete(key);
+    }
 
 }
 
