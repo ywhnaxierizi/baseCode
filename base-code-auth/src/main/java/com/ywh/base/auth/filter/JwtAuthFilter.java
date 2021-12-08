@@ -46,14 +46,19 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException{
         log.info("进入登录过滤器");
         //验证码的id从cookie中获取，通过id从redis获取验证码
-        String verifyCodeId = CookieUtils.getCookueValue(request, CommonConstants.VERIFY_CODE);
+        String verifyCodeId = CookieUtils.getCookueValue(request, CommonConstants.StringValue.VERIFY_CODE);
         if (StringUtils.isBlank(verifyCodeId)) {
             log.error("未获取到verifycode的cookie");
             throw new VerifyCodeFailesException("未获取到verifycode信息");
         }
-        // TODO 验证码的值可以放在redis中，从redis中获取验证码，和用户传入的验证码进行比对
         //verifyCode要从redis中获取
-        String verifyCode = verifyCodeId;
+        RedisUtils redisUtils = SpringContextBeanUtils.getBean(RedisUtils.class);
+        Object value = redisUtils.getValue(CommonConstants.StringValue.VERIFY_FILE + verifyCodeId);
+        String verifyCode = value == null ? null : value.toString();
+        if (StringUtils.isBlank(verifyCode)) {
+            log.error("验证码已过期");
+            throw new VerifyCodeFailesException("验证码已过期");
+        }
         SysUser sysUser = JSONObject.parseObject(request.getInputStream(), SysUser.class);
         if (sysUser == null) {
             log.error("用户信息为空");
@@ -69,7 +74,6 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
             log.error("验证码不正确");
             throw new VerifyCodeFailesException("验证码错误");
         }
-
         //这里是请求传来的password,是经过AES加密过的，所以需要先加密后再与数据库中的进行对比
         try {
             password = AesUtils.decrypt(password);

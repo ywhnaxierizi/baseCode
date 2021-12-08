@@ -1,3 +1,4 @@
+/*
 package com.ywh.base.common.datesource;
 
 import com.alibaba.druid.pool.DruidDataSource;
@@ -39,3 +40,4 @@ public class CommonDataSource {
         return new JdbcTemplate(dataSource);
     }
 }
+*/

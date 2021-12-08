@@ -7,5 +7,17 @@ package com.ywh.base.common.constants;
  */
 public class CommonConstants {
 
-    public static final String VERIFY_CODE = "verifycode";
+
+
+    /**生效时间设置*/
+    public static class ActiveTime {
+        public static final int DAY_1 = 24 * 60 * 60;
+        public static final int MINUTES_10 = 10 * 60;
+    }
+
+    public static class StringValue {
+        /**存放验证码的cookie的id*/
+        public static final String VERIFY_CODE = "verifycode";
+        public static final String VERIFY_FILE = "verify";
+    }
 }
