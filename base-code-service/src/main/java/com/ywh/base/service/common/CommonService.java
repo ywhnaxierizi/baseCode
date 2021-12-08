@@ -1,6 +1,4 @@
-package com.ywh.base.service.impl.common;
-
-import com.ywh.base.common.domain.User;
+package com.ywh.base.service.common;
 
 import java.util.List;
 

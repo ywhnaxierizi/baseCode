@@ -3,7 +3,7 @@ package com.ywh.base.service.impl.auth;
 import com.ywh.base.common.dao.UserMapper;
 import com.ywh.base.common.domain.User;
 import com.ywh.base.service.auth.UserService;
-import com.ywh.base.service.common.CommonServiceImpl;
+import com.ywh.base.service.impl.common.CommonServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
