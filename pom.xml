@@ -13,6 +13,7 @@
     <modules>
         <module>base-code-common</module>
         <module>base-code-controller</module>
+        <module>base-code-auth</module>
         <module>base-code-service</module>
         <module>base-code-job</module>
     </modules>
