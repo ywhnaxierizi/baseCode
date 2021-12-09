@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author ywh
@@ -109,8 +110,9 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
          */
         RsaUtils rsaUtils = SpringContextBeanUtils.getBean(RsaUtils.class);
         String token = JwtUtils.createToken(rsaUtils.getPrivateKey(), userInfo, 8*60);
-        // TODO 可以将token写到reids
-
+        // 将token写入到redis中可以快速查询
+        RedisUtils redisUtils = SpringContextBeanUtils.getBean(RedisUtils.class);
+        redisUtils.setValue(CommonConstants.StringValue.AUTH_TOKEN_FILE + userInfo.getUserId().toString(), token, 1, TimeUnit.DAYS );
         //将token写到cookie中
         Map<String, Object> data = new HashMap<>();
         data.put("userInfo", userInfo);
@@ -147,6 +149,10 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
             log.error("密码失效");
         }  else if (failed instanceof DisabledException) {
             log.error("账号被锁");
+        } else if (failed instanceof VerifyCodeFailesException) {
+            log.error("验证码验证错误");
+        } else if (failed instanceof AuthException) {
+            log.error("认证异常");
         }
         ResponseUtils.write(response,HttpServletResponse.SC_BAD_REQUEST);
     }

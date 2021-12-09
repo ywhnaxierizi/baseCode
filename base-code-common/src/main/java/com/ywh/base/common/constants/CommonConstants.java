@@ -18,6 +18,8 @@ public class CommonConstants {
     public static class StringValue {
         /**存放验证码的cookie的id*/
         public static final String VERIFY_CODE = "verifycode";
-        public static final String VERIFY_FILE = "verify";
+        public static final String VERIFY_FILE = "verify:";
+        /**存放authtoken*/
+        public static final String AUTH_TOKEN_FILE = "authtoken:";
     }
 }
