@@ -21,5 +21,6 @@ public class CommonConstants {
         public static final String VERIFY_FILE = "verify:";
         /**存放authtoken*/
         public static final String AUTH_TOKEN_FILE = "authtoken:";
+        public static final String AUTH_TOKEN = "authToken";
     }
 }

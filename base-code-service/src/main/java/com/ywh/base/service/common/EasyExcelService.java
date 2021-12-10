@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface EasyExcelService<T> {
 
-    void saveData(List<T> list);
+    void execute(List<T> list);
 }

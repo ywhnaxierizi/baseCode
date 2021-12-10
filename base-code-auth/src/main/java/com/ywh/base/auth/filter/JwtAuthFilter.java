@@ -110,14 +110,14 @@ public class JwtAuthFilter extends UsernamePasswordAuthenticationFilter {
          */
         RsaUtils rsaUtils = SpringContextBeanUtils.getBean(RsaUtils.class);
         String token = JwtUtils.createToken(rsaUtils.getPrivateKey(), userInfo, 8*60);
-        // 将token写入到redis中可以快速查询
+        // 将token写入到redis中,后续查询用户登录状态时可以从redis中查询
         RedisUtils redisUtils = SpringContextBeanUtils.getBean(RedisUtils.class);
         redisUtils.setValue(CommonConstants.StringValue.AUTH_TOKEN_FILE + userInfo.getUserId().toString(), token, 1, TimeUnit.DAYS );
         //将token写到cookie中
         Map<String, Object> data = new HashMap<>();
         data.put("userInfo", userInfo);
         data.put("token", token);
-        Cookie cookie = new Cookie("token", token);
+        Cookie cookie = new Cookie(CommonConstants.StringValue.AUTH_TOKEN, token);
         cookie.setPath("/");
         response.addCookie(cookie);
         ResponseUtils.write(response, HttpServletResponse.SC_OK, StatusCodeEnum.CODE_200.getCode(), "用户认证成功", data);
