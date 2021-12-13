@@ -56,11 +56,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/swagger-ui.html","swagger-resources/**").permitAll()//无需拦截的
+                //无需拦截的
+                .antMatchers("/","/swagger-ui.html","swagger-resources/**").permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/auth/logout") //登出的url
-                .deleteCookies("verifycode")  //登出时删除的cookie名
+                //登出的url
+                .logoutUrl("/auth/logout")
+                //登出时删除的cookie名
+                .deleteCookies("verifycode")
                 .permitAll()
                 .and()
                 .httpBasic()
@@ -75,7 +78,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterAt(authUserPasswdAuthenFilter(), UsernamePasswordAuthenticationFilter.class) //自定义登录过滤器
+                //自定义登录过滤器
+                .addFilterAt(authUserPasswdAuthenFilter(), UsernamePasswordAuthenticationFilter.class)
                 //添加过滤器
                 .addFilter(new JwtAuthFilter(authenticationManagerBean()));
     }

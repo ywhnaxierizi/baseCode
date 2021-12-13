@@ -23,7 +23,6 @@ import java.util.concurrent.TimeUnit;
  * @Date 2021/11/10 17:24
  */
 @RestController
-@RequestMapping("/auth/")
 public class VerifyCodeController {
 
     @Autowired
@@ -34,7 +33,7 @@ public class VerifyCodeController {
      * @param request
      * @param response
      */
-    @GetMapping("verifyCode")
+    @GetMapping("/verifyCode")
     public void verifyCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/png");
         response.setDateHeader("expries", -1);
